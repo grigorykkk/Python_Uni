@@ -1,101 +1,84 @@
 from datetime import date
 
-print("=== Поиск благотворительных мероприятий ===")
+print("=== Сервис поиска благотворительных мероприятий ===")
 
+user_name = input("Введите ваше имя: ")
+user_age = int(input("Введите ваш возраст: "))
 user_category = input(
     "Введите направление помощи (животные, дети, экология): "
 )
-user_age = int(input("Введите ваш возраст: "))
 
 print("\n=== Результат поиска ===")
 
+event_found = True
+
+
 if user_category.lower() == "животные":
+    event_name = "Благотворительная ярмарка помощи животным"
+    event_city = "Москва"
+    event_date = date(2026, 9, 20)
+    event_min_age = 14
 
-    print("Найдены мероприятия по направлению 'Животные':\n")
-
-    if user_age >= 14:
-        print("1. Благотворительная ярмарка помощи животным")
-        print("Город: Москва")
-        print("Дата:", date(2026, 9, 20))
-        print("Минимальный возраст: 14")
-        print()
-
-    if user_age >= 16:
-        print("2. Помощь городскому приюту")
-        print("Город: Казань")
-        print("Дата:", date(2026, 9, 25))
-        print("Минимальный возраст: 16")
-        print()
-
-    if user_age >= 14:
-        print("3. День помощи бездомным животным")
-        print("Город: Санкт-Петербург")
-        print("Дата:", date(2026, 10, 2))
-        print("Минимальный возраст: 14")
-        print()
-
-    if user_age < 14:
-        print("Подходящих мероприятий по вашему возрасту не найдено.")
-
+    organization_name = "Фонд помощи животным"
+    organization_contact = "animals@example.ru"
 
 elif user_category.lower() == "дети":
+    event_name = "Благотворительный праздник для детей"
+    event_city = "Екатеринбург"
+    event_date = date(2026, 9, 28)
+    event_min_age = 14
 
-    print("Найдены мероприятия по направлению 'Дети':\n")
-
-    if user_age >= 16:
-        print("1. Сбор школьных принадлежностей")
-        print("Город: Москва")
-        print("Дата:", date(2026, 9, 22))
-        print("Минимальный возраст: 16")
-        print()
-
-    if user_age >= 14:
-        print("2. Благотворительный праздник для детей")
-        print("Город: Екатеринбург")
-        print("Дата:", date(2026, 9, 28))
-        print("Минимальный возраст: 14")
-        print()
-
-    if user_age >= 18:
-        print("3. Волонтерская помощь детскому центру")
-        print("Город: Новосибирск")
-        print("Дата:", date(2026, 10, 5))
-        print("Минимальный возраст: 18")
-        print()
-
-    if user_age < 14:
-        print("Подходящих мероприятий по вашему возрасту не найдено.")
-
+    organization_name = "Фонд помощи детям"
+    organization_contact = "children@example.ru"
 
 elif user_category.lower() == "экология":
+    event_name = "Уборка городского парка"
+    event_city = "Москва"
+    event_date = date(2026, 9, 21)
+    event_min_age = 14
 
-    print("Найдены мероприятия по направлению 'Экология':\n")
-
-    if user_age >= 14:
-        print("1. Уборка городского парка")
-        print("Город: Москва")
-        print("Дата:", date(2026, 9, 21))
-        print("Минимальный возраст: 14")
-        print()
-
-    if user_age >= 16:
-        print("2. Посадка деревьев")
-        print("Город: Казань")
-        print("Дата:", date(2026, 9, 27))
-        print("Минимальный возраст: 16")
-        print()
-
-    if user_age >= 14:
-        print("3. Очистка берега реки")
-        print("Город: Самара")
-        print("Дата:", date(2026, 10, 4))
-        print("Минимальный возраст: 14")
-        print()
-
-    if user_age < 14:
-        print("Подходящих мероприятий по вашему возрасту не найдено.")
-
+    organization_name = "ЭкоВолонтер"
+    organization_contact = "eco@example.ru"
 
 else:
+    event_found = False
     print("Такое направление не найдено.")
     print("Выберите: животные, дети или экология.")
+
+
+if event_found:
+    print("\nНайдено мероприятие:")
+    print("Название:", event_name)
+    print("Город:", event_city)
+    print("Дата:", event_date)
+    print("Минимальный возраст:", event_min_age)
+
+    print("\nОрганизация:")
+    print("Название:", organization_name)
+    print("Контакты:", organization_contact)
+
+    if user_age >= event_min_age:
+        print("\nВы можете участвовать в этом мероприятии.")
+
+        answer = input("Хотите зарегистрироваться? (да/нет): ")
+
+        if answer.lower() == "да":
+            registration_date = date.today()
+            registration_status = "Зарегистрирован"
+
+            print("\n=== Регистрация ===")
+            print("Пользователь:", user_name)
+            print("Мероприятие:", event_name)
+            print("Дата регистрации:", registration_date)
+            print("Статус:", registration_status)
+
+        else:
+            print("Регистрация отменена.")
+
+    else:
+        print("\nВы не можете участвовать в этом мероприятии.")
+        print(
+            "Для участия необходимо достичь возраста",
+            event_min_age,
+            "лет."
+        )
