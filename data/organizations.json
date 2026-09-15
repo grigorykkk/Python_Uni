@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Фонд помощи животным",
+    "contact": "animals@example.ru"
+  },
+  {
+    "id": 2,
+    "name": "Фонд добрых дел",
+    "contact": "hello@example.ru"
+  },
+  {
+    "id": 3,
+    "name": "ЭкоВолонтёр",
+    "contact": "eco@example.ru"
+  }
+]
