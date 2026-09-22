@@ -28,3 +28,14 @@ def test_invalid_json_is_reported(tmp_path):
     filename.write_text("{broken", encoding="utf-8")
     with pytest.raises(ValueError, match="некорректный JSON"):
         load_json(filename)
+
+
+def test_missing_json_returns_empty_collection(tmp_path):
+    assert load_json(tmp_path / "missing.json") == []
+
+
+def test_json_structure_is_checked(tmp_path):
+    filename = tmp_path / "object.json"
+    filename.write_text("{}", encoding="utf-8")
+    with pytest.raises(ValueError, match="список объектов"):
+        load_json(filename)

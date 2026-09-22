@@ -2,6 +2,11 @@ import pytest
 
 
 @pytest.fixture
+def sample_organizations():
+    return [{"id": 1, "name": "Фонд помощи", "contact": "help@example.ru"}]
+
+
+@pytest.fixture
 def sample_events():
     return [
         {
